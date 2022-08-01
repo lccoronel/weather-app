@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
 import { TemperatureType } from 'dtos'
 import { useWeather, useGeolocation } from 'hooks'
@@ -14,13 +14,18 @@ export const Home: React.FC = () => {
    const [weather, setWeather] = useState<WeatherResponse>()
    const [temperatureType, setTemperatureType] = useState<TemperatureType>(TemperatureType.metric)
 
-   useEffect(() => {
+   const handleGetWeather = useCallback(async () => {
       if (location) {
+         setWeather(undefined)
          const { longitude, latitude } = location
 
-         getWeather({ longitude, latitude })
+         await getWeather({ longitude, latitude }).catch(() => console.log('error'))
       }
    }, [getWeather, location])
+
+   useEffect(() => {
+      handleGetWeather()
+   }, [handleGetWeather])
 
    useEffect(() => {
       if (metric) setWeather(metric)
@@ -43,8 +48,9 @@ export const Home: React.FC = () => {
          tempMax={weather.weather.tempMax}
          tempMin={weather.weather.tempMin}
          weeklyWeather={weather.weeklyWeather}
-         selectTemperatureType={selectTemperatureType}
          temperatureType={temperatureType}
+         selectTemperatureType={selectTemperatureType}
+         handleRefresh={handleGetWeather}
       />
    )
 }

@@ -10,6 +10,7 @@ import {
    ChooseTemperatureType,
    ChooseTemperatureTypeProps,
    Header,
+   HeaderProps,
 } from 'components/organisms'
 import { Container } from './styles'
 
@@ -17,6 +18,7 @@ interface HomeTemplateProps
    extends LocationAndWeatherInfoProps,
       CurrentTempProps,
       WeatherOfWeekListProps,
+      HeaderProps,
       ChooseTemperatureTypeProps {}
 
 export const HomeTemplate: React.FC<HomeTemplateProps> = ({
@@ -27,11 +29,12 @@ export const HomeTemplate: React.FC<HomeTemplateProps> = ({
    tempMin,
    weeklyWeather,
    temperatureType,
+   handleRefresh,
    selectTemperatureType,
 }) => {
    return (
       <Container>
-         <Header />
+         <Header handleRefresh={handleRefresh} />
          <LocationAndWeatherInfo timezone={timezone} weather={weather} />
          <CurrentTemp
             temp={temp}

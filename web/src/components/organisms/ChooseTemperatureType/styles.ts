@@ -5,7 +5,7 @@ export const Container = styled.div`
    align-items: center;
    justify-content: space-around;
    width: 60px;
-   margin: 18% auto 0;
+   margin: 16% auto 0;
 
    button {
       border: none;
@@ -14,7 +14,7 @@ export const Container = styled.div`
 
    @media screen and (max-width: 720px) {
       & {
-         margin: 60% auto 0;
+         margin: 55% auto 0;
       }
    }
 `
