@@ -1,5 +1,7 @@
 import { DailyWeather, SkyTypes } from 'dtos'
+import { convertTimeStampToDate } from 'helpers/convertTimestampToDate'
 import { formatTimezone } from 'helpers/formatTimezone'
+import { getDayPeriod } from 'helpers'
 import { WeatherResponse } from 'hooks/weather/types'
 import { FormatWeatherResponseProps } from './types'
 
@@ -15,7 +17,7 @@ export function formatWeatherResponse({ daily, current, timezone }: FormatWeathe
    const weeklyWeather = daily
       .filter((_: DailyWeather, index: number) => index !== 0)
       .map((day: DailyWeather) => {
-         const formattedDate = new Date(day.dt * 1000)
+         const formattedDate = convertTimeStampToDate(day.dt)
          const weekDayInFull = formattedDate.toLocaleString('en-us', { weekday: 'long' })
 
          return {
@@ -38,5 +40,6 @@ export function formatWeatherResponse({ daily, current, timezone }: FormatWeathe
          tempMin: Math.round(daily[0].temp.min),
       },
       weeklyWeather,
+      dayPeriod: getDayPeriod(current.dt),
    }
 }

@@ -41,4 +41,5 @@ export interface WeatherResponse {
       tempMin: number
    }
    weeklyWeather: WeeklyWeather[]
+   dayPeriod: string
 }
