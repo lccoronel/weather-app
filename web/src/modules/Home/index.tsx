@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { TemperatureType } from 'dtos'
 import { useWeather, useGeolocation } from 'hooks'
 import { WeatherResponse } from 'hooks/weather/types'
+import { isMetricType } from 'helpers'
 import { HomeTemplate } from './HomeTemplate'
 
 export const Home: React.FC = () => {
@@ -26,7 +27,7 @@ export const Home: React.FC = () => {
 
    function selectTemperatureType(type: TemperatureType) {
       setTemperatureType(type)
-      setWeather(type === TemperatureType.metric ? metric : imperial)
+      setWeather(isMetricType(type) ? metric : imperial)
    }
 
    if (!weather) {

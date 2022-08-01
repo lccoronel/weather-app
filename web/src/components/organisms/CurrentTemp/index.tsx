@@ -3,6 +3,7 @@ import Lottie from 'lottie-react'
 
 import { MoreWeatherInfo, TemperatureVariables } from 'components/molecules'
 import { SkyTypes, TemperatureType } from 'dtos'
+import { isMetricType } from 'helpers'
 import { skyTypes } from './data'
 import { Container, ContainerDegrees, ContainerAnimation, ContainerMoreInfos, ContainerTemperature } from './styles'
 
@@ -15,7 +16,7 @@ export interface CurrentTempProps {
 }
 
 export const CurrentTemp: React.FC<CurrentTempProps> = ({ temp, tempMax, tempMin, weather, temperatureType }) => {
-   const unit = temperatureType === TemperatureType.metric ? 'ºC' : 'ºF'
+   const unit = isMetricType(temperatureType) ? 'ºC' : 'ºF'
 
    return (
       <Container>
