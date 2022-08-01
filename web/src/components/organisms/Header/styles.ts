@@ -5,7 +5,7 @@ export const Container = styled.header`
    padding: 15px;
 
    a {
-      background-color: white;
+      background-color: var(--background-button);
       padding: 5px 10px;
       border-radius: 7px;
       font-size: 15px;

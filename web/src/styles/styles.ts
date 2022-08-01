@@ -1,6 +1,13 @@
 import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyles = createGlobalStyle`
+   :root {
+      --background-app: #fcdec0;
+      --background-button: white;
+      --font-color-gray: gray;
+      --font-color-black: black;
+   }
+
   * {
     margin: 0;
     padding: 0;
@@ -14,7 +21,6 @@ export const GlobalStyles = createGlobalStyle`
 
   body, input, button, p {
     font-family: 'Roboto', sans-serif;
-    font-size: 16px;
   }
 
   h1, h2, h3, h4, h5, h6, strong {

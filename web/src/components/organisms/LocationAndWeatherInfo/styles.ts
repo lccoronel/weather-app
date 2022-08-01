@@ -4,10 +4,10 @@ export const Container = styled.div`
    .textInfo {
       font-size: 25px;
       text-align: center;
-      color: gray;
+      color: var(--font-color-gray);
 
       span {
-         color: black;
+         color: var(--font-color-black);
          font-weight: bold;
       }
    }
