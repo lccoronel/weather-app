@@ -30,7 +30,7 @@ export const ContainerDegrees = styled.div`
 
    @media screen and (max-width: 600px) {
       & {
-         margin: 0 40px 0 30px;
+         margin: 0 30px;
       }
 
       .degrees {
