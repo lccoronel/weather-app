@@ -4,6 +4,7 @@ import { TemperatureType } from 'dtos'
 import { useWeather, useGeolocation } from 'hooks'
 import { WeatherResponse } from 'hooks/weather/types'
 import { isMetricType } from 'helpers'
+import { Loading } from 'components/molecules'
 import { HomeTemplate } from './HomeTemplate'
 
 export const Home: React.FC = () => {
@@ -31,7 +32,7 @@ export const Home: React.FC = () => {
    }
 
    if (!weather) {
-      return <h1>loading...</h1>
+      return <Loading />
    }
 
    return (
