@@ -4,7 +4,7 @@ import { TemperatureType } from 'dtos'
 import { useWeather, useGeolocation } from 'hooks'
 import { WeatherResponse } from 'hooks/weather/types'
 import { isMetricType } from 'helpers'
-import { Loading } from 'components/molecules'
+import { AlternativeScreen } from 'components/molecules'
 import { HomeTemplate } from './HomeTemplate'
 
 export const Home: React.FC = () => {
@@ -12,14 +12,16 @@ export const Home: React.FC = () => {
    const { location } = useGeolocation()
 
    const [weather, setWeather] = useState<WeatherResponse>()
+   const [hasError, setHasError] = useState(false)
    const [temperatureType, setTemperatureType] = useState<TemperatureType>(TemperatureType.metric)
 
    const handleGetWeather = useCallback(async () => {
       if (location) {
          setWeather(undefined)
+         setHasError(false)
          const { longitude, latitude } = location
 
-         await getWeather({ longitude, latitude }).catch(() => console.log('error'))
+         await getWeather({ longitude, latitude }).catch(() => setHasError(true))
       }
    }, [getWeather, location])
 
@@ -37,7 +39,11 @@ export const Home: React.FC = () => {
    }
 
    if (!weather) {
-      return <Loading />
+      return <AlternativeScreen screenType="loading" />
+   }
+
+   if (hasError) {
+      return <AlternativeScreen screenType="error" />
    }
 
    return (
