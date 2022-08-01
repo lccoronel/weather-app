@@ -1,9 +1,14 @@
 import React from 'react'
 
+import { AppProvider } from 'hooks'
+import { GlobalStyles } from 'styles/styles'
+import { Home } from './modules/Home'
+
 export function App() {
    return (
-      <div className="App">
-         <h1>Builders</h1>
-      </div>
+      <AppProvider>
+         <GlobalStyles />
+         <Home />
+      </AppProvider>
    )
 }
