@@ -12,11 +12,15 @@ export const GeolocationProvider: React.FC<GeolocationProviderProps> = ({ childr
    const [location, setLocation] = useState<Location>()
 
    const getGeolocation = useCallback(() => {
-      navigator.geolocation.getCurrentPosition(position => {
-         const { longitude, latitude } = position.coords
+      try {
+         navigator.geolocation.getCurrentPosition(position => {
+            const { longitude, latitude } = position.coords
 
-         setLocation({ longitude, latitude })
-      })
+            setLocation({ longitude, latitude })
+         })
+      } catch (error) {
+         throw new Error(String(error))
+      }
    }, [])
 
    useEffect(() => {

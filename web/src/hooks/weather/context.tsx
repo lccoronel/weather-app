@@ -19,26 +19,30 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({ children }) =>
    const getWeather = useCallback(async ({ latitude, longitude }: GetWeatherProps) => {
       const appId = '4f0302c8e731a3a878e7033adf44457b'
 
-      const [metricResponse, imperialResponse] = await axios.all([
-         api.get(`onecall?lat=${latitude}&lon=${longitude}&appid=${appId}&units=${TemperatureType.metric}`),
-         api.get(`onecall?lat=${latitude}&lon=${longitude}&appid=${appId}&units=${TemperatureType.imperial}`),
-      ])
+      try {
+         const [metricResponse, imperialResponse] = await axios.all([
+            api.get(`onecall?lat=${latitude}&lon=${longitude}&appid=${appId}&units=${TemperatureType.metric}`),
+            api.get(`onecall?lat=${latitude}&lon=${longitude}&appid=${appId}&units=${TemperatureType.imperial}`),
+         ])
 
-      const metricData = formatWeatherResponse({
-         current: metricResponse.data.current,
-         daily: metricResponse.data.daily,
-         timezone: metricResponse.data.timezone,
-      })
+         const metricData = formatWeatherResponse({
+            current: metricResponse.data.current,
+            daily: metricResponse.data.daily,
+            timezone: metricResponse.data.timezone,
+         })
 
-      setMetric(metricData)
+         setMetric(metricData)
 
-      const imperialData = formatWeatherResponse({
-         current: imperialResponse.data.current,
-         daily: imperialResponse.data.daily,
-         timezone: imperialResponse.data.timezone,
-      })
+         const imperialData = formatWeatherResponse({
+            current: imperialResponse.data.current,
+            daily: imperialResponse.data.daily,
+            timezone: imperialResponse.data.timezone,
+         })
 
-      setImperial(imperialData)
+         setImperial(imperialData)
+      } catch (error) {
+         throw new Error(String(error))
+      }
    }, [])
 
    return <WeatherContext.Provider value={{ getWeather, metric, imperial }}>{children}</WeatherContext.Provider>
