@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.header`
-   height: 7%;
+   height: 10%;
    padding: 15px;
 
    a {
@@ -10,5 +10,11 @@ export const Container = styled.header`
       border-radius: 7px;
       font-size: 15px;
       text-decoration: none;
+   }
+
+   @media screen and (max-width: 720px) {
+      & {
+         height: 7%;
+      }
    }
 `

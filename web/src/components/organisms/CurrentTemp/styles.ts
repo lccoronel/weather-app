@@ -12,7 +12,7 @@ export const ContainerAnimation = styled.div`
    width: ${containerSize}px;
    height: ${containerSize}px;
 
-   @media screen and (max-width: 600px) {
+   @media screen and (max-width: 720px) {
       width: ${containerSize - 70}px;
       height: ${containerSize - 70}px;
    }
@@ -28,7 +28,7 @@ export const ContainerDegrees = styled.div`
       font-size: 100px;
    }
 
-   @media screen and (max-width: 600px) {
+   @media screen and (max-width: 720px) {
       & {
          margin: 0 30px;
       }
