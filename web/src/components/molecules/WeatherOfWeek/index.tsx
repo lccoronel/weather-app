@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTheme } from 'styled-components'
 
 import { Icon, TextSmall } from 'components/atoms'
 import { TemperatureType, WeeklyWeather } from 'dtos'
@@ -11,6 +12,8 @@ export interface WeatherOfWeekProps {
 }
 
 export const WeatherOfWeek: React.FC<WeatherOfWeekProps> = ({ dailyTemp, temperatureType }) => {
+   const { colors } = useTheme()
+
    return (
       <Container>
          <Icon
@@ -23,7 +26,7 @@ export const WeatherOfWeek: React.FC<WeatherOfWeekProps> = ({ dailyTemp, tempera
             tempMin={dailyTemp.tempMin}
             temperatureType={temperatureType}
          />
-         <TextSmall color="gray" fontWeight="bold">
+         <TextSmall color={colors.fontColorGray} fontWeight="bold">
             {dailyTemp.date}
          </TextSmall>
       </Container>

@@ -1,14 +1,17 @@
 import React from 'react'
+import { ThemeProvider } from 'styled-components'
 
 import { AppProvider } from 'hooks'
-import { GlobalStyles } from 'styles/styles'
+import { GlobalStyles, theme } from 'styles/styles'
 import { Home } from './modules/Home'
 
 export function App() {
    return (
-      <AppProvider>
-         <GlobalStyles />
-         <Home />
-      </AppProvider>
+      <ThemeProvider theme={theme}>
+         <AppProvider>
+            <GlobalStyles />
+            <Home />
+         </AppProvider>
+      </ThemeProvider>
    )
 }

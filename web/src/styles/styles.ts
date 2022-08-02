@@ -2,9 +2,10 @@ import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyles = createGlobalStyle`
    :root {
-      --background-app: #fcdec0;
+      --background-app: #fff2cc;
+      --background-app-night: #6fa8dc;
       --background-button: white;
-      --font-color-gray: gray;
+      --font-color-gray: #5b5b5b;
       --font-color-black: black;
    }
 
@@ -31,3 +32,13 @@ export const GlobalStyles = createGlobalStyle`
     cursor: pointer;
   }
 `
+
+export const theme = {
+   colors: {
+      backgroundApp: 'f#ff2cc',
+      backgroundAppNight: '#6fa8dc',
+      backgroundButton: 'white',
+      fontColorGray: '#5b5b5b',
+      fontColorBlack: 'black',
+   },
+}
