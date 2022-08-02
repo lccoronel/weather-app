@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react'
 
-import { TemperatureType, Weather } from 'dtos'
+import { DayPeriod, TemperatureType, Weather } from 'dtos'
 import { useWeather, useGeolocation } from 'hooks'
-import { isMetricType } from 'helpers'
+import { isMetricType, isMorning } from 'helpers'
 import { AlternativeScreen } from 'components/molecules'
 import { HomeTemplate } from './HomeTemplate'
 
@@ -38,11 +38,11 @@ export const Home: React.FC = () => {
    }
 
    if (!weather) {
-      return <AlternativeScreen screenType="loading" />
+      return <AlternativeScreen screenType="loading" dayPeriod={DayPeriod.AM} />
    }
 
    if (hasError) {
-      return <AlternativeScreen screenType="error" />
+      return <AlternativeScreen screenType="error" dayPeriod={weather.dayPeriod || DayPeriod.AM} />
    }
 
    return (

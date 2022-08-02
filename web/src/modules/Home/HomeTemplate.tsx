@@ -13,6 +13,7 @@ import {
    HeaderProps,
 } from 'components/organisms'
 import { DayPeriod } from 'dtos'
+import { isMorning } from 'helpers'
 import { Container } from './styles'
 
 interface HomeTemplateProps
@@ -37,7 +38,7 @@ export const HomeTemplate: React.FC<HomeTemplateProps> = ({
    selectTemperatureType,
 }) => {
    return (
-      <Container>
+      <Container isMorning={isMorning(dayPeriod)}>
          <Header handleRefresh={handleRefresh} />
          <LocationAndWeatherInfo timezone={timezone} weather={weather} />
          <CurrentTemp

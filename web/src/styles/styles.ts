@@ -35,7 +35,7 @@ export const GlobalStyles = createGlobalStyle`
 
 export const theme = {
    colors: {
-      backgroundApp: 'f#ff2cc',
+      backgroundApp: '#fff2cc',
       backgroundAppNight: '#6fa8dc',
       backgroundButton: 'white',
       fontColorGray: '#5b5b5b',
