@@ -1,8 +1,7 @@
-import { DailyWeather, SkyTypes } from 'dtos'
+import { DailyWeather, SkyTypes, Weather } from 'dtos'
 import { convertTimeStampToDate } from 'helpers/convertTimestampToDate'
 import { formatTimezone } from 'helpers/formatTimezone'
 import { getDayPeriod } from 'helpers'
-import { WeatherResponse } from 'hooks/weather/types'
 import { FormatWeatherResponseProps } from './types'
 
 /**
@@ -13,7 +12,7 @@ import { FormatWeatherResponseProps } from './types'
  * @param {FormatWeatherResponseProps} object - `daily` object, `current` object and `timezone` string
  * @returns {WeatherResponse} Return a formatted object with timezone, weather and weeklyTemp
  */
-export function formatWeatherResponse({ daily, current, timezone }: FormatWeatherResponseProps): WeatherResponse {
+export function formatWeatherResponse({ daily, current, timezone }: FormatWeatherResponseProps): Weather {
    const weeklyWeather = daily
       .filter((_: DailyWeather, index: number) => index !== 0)
       .map((day: DailyWeather) => {
@@ -32,7 +31,7 @@ export function formatWeatherResponse({ daily, current, timezone }: FormatWeathe
 
    return {
       timezone: formatTimezone(timezone),
-      weather: {
+      temperature: {
          iconId: current.weather[0].icon,
          temp: Math.round(current.temp),
          weatherState: current.weather[0].main as SkyTypes,

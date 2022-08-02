@@ -12,6 +12,7 @@ import {
    Header,
    HeaderProps,
 } from 'components/organisms'
+import { DayPeriod } from 'dtos'
 import { Container } from './styles'
 
 interface HomeTemplateProps
@@ -19,7 +20,9 @@ interface HomeTemplateProps
       CurrentTempProps,
       WeatherOfWeekListProps,
       HeaderProps,
-      ChooseTemperatureTypeProps {}
+      ChooseTemperatureTypeProps {
+   dayPeriod: DayPeriod
+}
 
 export const HomeTemplate: React.FC<HomeTemplateProps> = ({
    timezone,
@@ -29,6 +32,7 @@ export const HomeTemplate: React.FC<HomeTemplateProps> = ({
    tempMin,
    weeklyWeather,
    temperatureType,
+   dayPeriod,
    handleRefresh,
    selectTemperatureType,
 }) => {

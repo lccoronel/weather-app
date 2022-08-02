@@ -2,9 +2,9 @@ import React, { createContext, ReactNode, useCallback, useState } from 'react'
 import axios from 'axios'
 
 import { api } from 'services/api'
-import { TemperatureType } from 'dtos'
+import { TemperatureType, Weather } from 'dtos'
 import { formatWeatherResponse } from 'helpers/formatWeatherResponse'
-import { GetWeatherProps, WeatherResponse, WeatherContextProps } from './types'
+import { GetWeatherProps, WeatherContextProps } from './types'
 
 interface WeatherProviderProps {
    children: ReactNode
@@ -13,8 +13,8 @@ interface WeatherProviderProps {
 export const WeatherContext = createContext({} as WeatherContextProps)
 
 export const WeatherProvider: React.FC<WeatherProviderProps> = ({ children }) => {
-   const [metric, setMetric] = useState<WeatherResponse>()
-   const [imperial, setImperial] = useState<WeatherResponse>()
+   const [metric, setMetric] = useState<Weather>()
+   const [imperial, setImperial] = useState<Weather>()
 
    const getWeather = useCallback(async ({ latitude, longitude }: GetWeatherProps) => {
       const appId = '4f0302c8e731a3a878e7033adf44457b'

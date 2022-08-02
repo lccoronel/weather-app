@@ -1,4 +1,4 @@
-import { SkyTypes, WeeklyWeather } from 'dtos'
+import { Weather } from 'dtos'
 import { Location } from 'hooks/geolocation/types'
 
 export type WeatherContextProps = {
@@ -17,29 +17,16 @@ export type WeatherContextProps = {
    getWeather(data: GetWeatherProps): Promise<void>
 
    /**
-    * @type {WeatherResponse}
+    * @type {Weather}
     * An object with metric weather content, this object contains `timezone`, `weather` and `weeklyWeather`
     */
-   metric: WeatherResponse | undefined
+   metric: Weather | undefined
 
    /**
-    * @type {WeatherResponse}
+    * @type {Weather}
     * An object with imperial weather content, this object contains `timezone`, `weather` and `weeklyWeather`
     */
-   imperial: WeatherResponse | undefined
+   imperial: Weather | undefined
 }
 
 export type GetWeatherProps = Location
-
-export interface WeatherResponse {
-   timezone: string
-   weather: {
-      weatherState: SkyTypes
-      temp: number
-      iconId: string
-      tempMax: number
-      tempMin: number
-   }
-   weeklyWeather: WeeklyWeather[]
-   dayPeriod: string
-}

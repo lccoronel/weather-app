@@ -1,4 +1,5 @@
-import { convertTimeStampToDate } from 'helpers/convertTimestampToDate'
+import { DayPeriod } from 'dtos'
+import { convertTimeStampToDate } from 'helpers'
 
 /**
  * Helper function to get day period
@@ -8,9 +9,10 @@ import { convertTimeStampToDate } from 'helpers/convertTimestampToDate'
  * @param {number} timestamp
  * @returns {string} Return a converted day period
  */
-export function getDayPeriod(timestamp: number): string {
+export function getDayPeriod(timestamp: number): DayPeriod {
    const convertedDate = convertTimeStampToDate(timestamp)
    const formattedDate = convertedDate.toLocaleString('en-us', { hour: 'numeric' })
    const [, dayPeriod] = formattedDate.split(' ')
-   return dayPeriod
+
+   return dayPeriod as DayPeriod
 }
