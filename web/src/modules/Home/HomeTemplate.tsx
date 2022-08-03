@@ -1,17 +1,14 @@
 import React from 'react'
 
 import {
-   WeatherOfWeekList,
-   WeatherOfWeekListProps,
-   CurrentTemp,
-   CurrentTempProps,
-   LocationAndWeatherInfo,
-   LocationAndWeatherInfoProps,
    ChooseTemperatureType,
    ChooseTemperatureTypeProps,
    Header,
    HeaderProps,
-} from 'components/organisms'
+   LocationAndWeatherInfo,
+   LocationAndWeatherInfoProps,
+} from 'components/molecules'
+import { WeatherOfWeekList, WeatherOfWeekListProps, CurrentTemp, CurrentTempProps } from 'components/organisms'
 import { Container } from './styles'
 
 interface HomeTemplateProps

@@ -1,5 +1,2 @@
 export * from './WeatherOfWeekList'
 export * from './CurrentTemp'
-export * from './LocationAndWeatherInfo'
-export * from './ChooseTemperatureType'
-export * from './Header'
