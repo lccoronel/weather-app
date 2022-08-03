@@ -25,6 +25,7 @@
    ],
    "rules": {
       "semi": "off",
+      "react/jsx-props-no-spreading": "off",
       "prettier/prettier": "error",
       "react/jsx-no-bind": "off",
       "no-use-before-define": "off",
