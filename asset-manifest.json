@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/builders/static/js/main.93770556.js",
-    "index.html": "/builders/index.html",
-    "main.93770556.js.map": "/builders/static/js/main.93770556.js.map"
+    "main.js": "/weatherApp.github.io/static/js/main.d59d8d1b.js",
+    "index.html": "/weatherApp.github.io/index.html",
+    "main.d59d8d1b.js.map": "/weatherApp.github.io/static/js/main.d59d8d1b.js.map"
   },
   "entrypoints": [
-    "static/js/main.93770556.js"
+    "static/js/main.d59d8d1b.js"
   ]
 }
