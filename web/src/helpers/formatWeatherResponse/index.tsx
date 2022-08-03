@@ -10,7 +10,8 @@ import { FormatWeatherResponseProps } from './types'
  * Call example: `formatWeatherResponse({ daily, current, timezone })`
  *
  * @param {FormatWeatherResponseProps} object - `daily` object, `current` object and `timezone` string
- * @returns {WeatherResponse} Return a formatted object with timezone, weather and weeklyTemp
+ * @returns {WeatherResponse} Return a formatted object with timezone,
+ * weather, weeklyTemp, dayPeriod, sunrise and sunset
  */
 export function formatWeatherResponse({ daily, current, timezone }: FormatWeatherResponseProps): Weather {
    const weeklyWeather = daily
@@ -29,6 +30,10 @@ export function formatWeatherResponse({ daily, current, timezone }: FormatWeathe
          }
       })
 
+   const currentDate = getDayPeriod(current.dt)
+   const sunrise = getDayPeriod(current.sunrise)
+   const sunset = getDayPeriod(current.sunset)
+
    return {
       timezone: formatTimezone(timezone),
       temperature: {
@@ -39,6 +44,8 @@ export function formatWeatherResponse({ daily, current, timezone }: FormatWeathe
          tempMin: Math.round(daily[0].temp.min),
       },
       weeklyWeather,
-      dayPeriod: getDayPeriod(current.dt),
+      dayPeriod: { period: currentDate.dayPeriod, hour: currentDate.hour },
+      sunrise: { period: sunrise.dayPeriod, hour: sunrise.hour },
+      sunset: { period: sunset.dayPeriod, hour: sunset.hour },
    }
 }

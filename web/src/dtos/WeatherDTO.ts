@@ -10,5 +10,16 @@ export interface Weather {
       tempMin: number
    }
    weeklyWeather: WeeklyWeather[]
-   dayPeriod: DayPeriod
+   dayPeriod: {
+      period: DayPeriod
+      hour: number
+   }
+   sunset: {
+      period: DayPeriod
+      hour: number
+   }
+   sunrise: {
+      period: DayPeriod
+      hour: number
+   }
 }

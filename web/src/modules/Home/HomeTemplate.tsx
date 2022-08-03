@@ -12,8 +12,6 @@ import {
    Header,
    HeaderProps,
 } from 'components/organisms'
-import { DayPeriod } from 'dtos'
-import { isMorning } from 'helpers'
 import { Container } from './styles'
 
 interface HomeTemplateProps
@@ -21,9 +19,7 @@ interface HomeTemplateProps
       CurrentTempProps,
       WeatherOfWeekListProps,
       HeaderProps,
-      ChooseTemperatureTypeProps {
-   dayPeriod: DayPeriod
-}
+      ChooseTemperatureTypeProps {}
 
 export const HomeTemplate: React.FC<HomeTemplateProps> = ({
    timezone,
@@ -33,12 +29,12 @@ export const HomeTemplate: React.FC<HomeTemplateProps> = ({
    tempMin,
    weeklyWeather,
    temperatureType,
-   dayPeriod,
+   isMorning,
    handleRefresh,
    selectTemperatureType,
 }) => {
    return (
-      <Container isMorning={isMorning(dayPeriod)}>
+      <Container isMorning={isMorning}>
          <Header handleRefresh={handleRefresh} />
          <LocationAndWeatherInfo timezone={timezone} weather={weather} />
          <CurrentTemp
@@ -47,6 +43,7 @@ export const HomeTemplate: React.FC<HomeTemplateProps> = ({
             tempMin={tempMin}
             weather={weather}
             temperatureType={temperatureType}
+            isMorning={isMorning}
          />
          <WeatherOfWeekList weeklyWeather={weeklyWeather} temperatureType={temperatureType} />
          <ChooseTemperatureType selectTemperatureType={selectTemperatureType} temperatureType={temperatureType} />

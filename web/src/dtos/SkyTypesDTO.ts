@@ -3,4 +3,5 @@ export enum SkyTypes {
    Clear = 'Clear',
    Rain = 'Rain',
    Clouds = 'Clouds',
+   Mist = 'Mist',
 }

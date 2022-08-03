@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 
-import { DayPeriod, TemperatureType, Weather } from 'dtos'
+import { TemperatureType, Weather } from 'dtos'
 import { useWeather, useGeolocation } from 'hooks'
 import { isMetricType, isMorning } from 'helpers'
 import { AlternativeScreen } from 'components/molecules'
@@ -38,16 +38,22 @@ export const Home: React.FC = () => {
    }
 
    if (!weather) {
-      return <AlternativeScreen screenType="loading" dayPeriod={DayPeriod.AM} />
+      return <AlternativeScreen screenType="loading" isMorning />
    }
 
+   const isMorningNow = isMorning({
+      dayPeriod: weather.dayPeriod,
+      sunrise: weather.sunrise,
+      sunset: weather.sunset,
+   })
+
    if (hasError) {
-      return <AlternativeScreen screenType="error" dayPeriod={weather.dayPeriod || DayPeriod.AM} />
+      return <AlternativeScreen screenType="error" isMorning={isMorningNow} />
    }
 
    return (
       <HomeTemplate
-         dayPeriod={weather.dayPeriod}
+         isMorning={isMorningNow}
          timezone={weather.timezone}
          weather={weather.temperature.weatherState}
          temp={weather.temperature.temp}

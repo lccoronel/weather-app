@@ -1,18 +1,26 @@
 import { DayPeriod } from 'dtos'
 import { convertTimeStampToDate } from 'helpers'
 
+interface GetDayPeriodResponse {
+   dayPeriod: DayPeriod
+   hour: number
+}
+
 /**
- * Helper function to get day period
+ * Helper function to get day period and a current  hour
  *
  * Call example: `getDayPeriod(timestamp)`
  *
  * @param {number} timestamp
- * @returns {string} Return a converted day period
+ * @returns {GetDayPeriodResponse} Return a converted day period and a current hour
  */
-export function getDayPeriod(timestamp: number): DayPeriod {
+export function getDayPeriod(timestamp: number): GetDayPeriodResponse {
    const convertedDate = convertTimeStampToDate(timestamp)
    const formattedDate = convertedDate.toLocaleString('en-us', { hour: 'numeric' })
-   const [, dayPeriod] = formattedDate.split(' ')
+   const [hour, dayPeriod] = formattedDate.split(' ')
 
-   return dayPeriod as DayPeriod
+   return {
+      dayPeriod: dayPeriod as DayPeriod,
+      hour: Number(hour),
+   }
 }

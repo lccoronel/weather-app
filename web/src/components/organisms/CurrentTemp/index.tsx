@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import Lottie from 'lottie-react'
 
+import moonAnimation from 'assets/animations/moon.json'
 import { MoreWeatherInfo, TemperatureVariables } from 'components/molecules'
 import { SkyTypes, TemperatureType } from 'dtos'
 import { isMetricType } from 'helpers'
@@ -13,15 +14,31 @@ export interface CurrentTempProps {
    tempMin: number
    weather: SkyTypes
    temperatureType: TemperatureType
+   isMorning: boolean
 }
 
-export const CurrentTemp: React.FC<CurrentTempProps> = ({ temp, tempMax, tempMin, weather, temperatureType }) => {
+export const CurrentTemp: React.FC<CurrentTempProps> = ({
+   temp,
+   tempMax,
+   tempMin,
+   weather,
+   temperatureType,
+   isMorning,
+}) => {
    const unit = isMetricType(temperatureType) ? 'ºC' : 'ºF'
+
+   const animationData = useMemo(() => {
+      if (weather === SkyTypes.Clear) {
+         return isMorning ? skyTypes.Clear : moonAnimation
+      }
+
+      return skyTypes[weather]
+   }, [weather, isMorning])
 
    return (
       <Container>
          <ContainerAnimation>
-            <Lottie animationData={skyTypes[weather]} loop />
+            <Lottie animationData={animationData} loop />
          </ContainerAnimation>
 
          <ContainerDegrees>
